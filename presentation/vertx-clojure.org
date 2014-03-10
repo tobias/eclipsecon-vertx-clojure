@@ -1,0 +1,94 @@
+#+Title: Building Vert.x Applications With Clojure
+#+Author: Toby Crawley
+#+Email: toby@tcrawley.org
+
+#+OPTIONS: toc:nil reveal_center:t reveal_progress:nil reveal_history:t reveal_control:nil
+#+OPTIONS: reveal_mathjax:t reveal_rolling_links:t reveal_keyboard:t reveal_overview:t num:nil
+#+REVEAL_MARGIN: 0.1
+#+REVEAL_MIN_SCALE: 0.5
+#+REVEAL_MAX_SCALE: 2.5
+#+REVEAL_TRANS: linear
+#+REVEAL_SPEED: fast
+#+REVEAL_THEME: custom
+#+REVEAL_HLEVEL: 1
+#+REVEAL_HEAD_PREAMBLE: <meta name="description" content="Building Vert.x Applications With Clojure">
+#+REVEAL_EXTRA_CSS: custom.css
+#+REVEAL_TITLE_SLIDE_TEMPLATE: <div id="title-slide"><h2>Building</h2><img src="vertx-logo.png"><h2>Applications With</h2><img src="clojure-icon.gif"><h3>Toby Crawley</h3><h4>EclipseCon 2014</h4></div>
+
+* What is Clojure?
+#+ATTR_REVEAL: :frag roll-in
+  - A functional lisp for the JVM
+  - Consistent syntax
+  - Dynamic, strong typing
+  - (Almost) Everything is immutable
+  - Compiles to bytecode and JS (ClojureScript)
+
+* Collections
+#+ATTR_REVEAL: :frag roll-in
+  - List: =(1 2 false)=
+  - Vector: =["ham biscuit" 7 (1 2 3)]=
+  - Map: ={"key" "value", 1 true}=
+
+* Collections as values
+  - List: =(1 2 false)=
+  - Vector: =["ham biscuit" 7 (1 2 3)]=
+  - Map: ={"key" "value", 1 true}=
+
+* Code is data
+
+#+BEGIN_SRC clojure
+  (println "Hello friends!")
+  
+  (doseq [technology ["Vert.x" "Netty"]]
+    (println technology "is the bomb."))
+#+END_SRC
+
+* Java Interop
+
+#+BEGIN_SRC clojure
+  (import 'java.util.concurrent.CountDownLatch)
+  
+  (let [latch (CountDownLatch. 1)
+        thread (Thread.
+                 (fn []
+                   (println "Thread started")
+                   (.countDown latch)))]
+    (.start thread)
+    (.await latch))
+#+END_SRC
+
+* Why Clojure + Vert.x?
+#+ATTR_REVEAL: :frag roll-in
+  - Similar concurrency goals
+  - JVM native
+  - 1st class functions
+  - REPL
+  - ClojureScript EventBus client
+
+* Drawbacks
+  - Static runtime
+
+* Examples
+
+* Takeaways
+
+* Resources
+  - Stuart Sierra YOW! 2013: http://www.youtube.com/watch?v=Bcd3TOlYUGM
+  - Clojure & state: http://clojure.org/state
+  - mod-lang-clojure: https://github.com/vert-x/mod-lang-clojure
+  - lein-vertx: https://github.com/isaiah/lein-vertx
+  - ring-vertx-adapter: https://github.com/stream1984/ring-vertx-adapter
+  - This presentation: https://github.com/tobias/eclipsecon-vertx-clojure
+
+* Questions?
+  :PROPERTIES:
+  :REVEAL_EXTRA_ATTR: class="suppress"
+  :reveal_data_state: cited dark-bg
+  :END:
+
+  [[./hands.jpg]]
+
+* Credits
+  - "please raise hand for assistance" - http://www.flickr.com/photos/coldtaxi/426162862/
+  
+

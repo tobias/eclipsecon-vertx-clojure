@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>(Building Vert.x Applications With Clojure)</title>
+<meta name="author" content="(Toby Crawley)"/>
+<link rel="stylesheet" href="./css/reveal.min.css"/>
+<link rel="stylesheet" href="./css/theme/custom.css" id="theme"/>
+<link rel="stylesheet" href="custom.css"/>
+<link rel="stylesheet" href="./css/print/pdf.css" type="text/css" media="print"/>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<meta name="description" content="Building Vert.x Applications With Clojure">
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section>
+<div id="title-slide"><h2>Building</h2><img src="vertx-logo.png"><h2>Applications With</h2><img src="clojure-icon.gif"><h3>Toby Crawley</h3><h4>EclipseCon 2014</h4></div></section>
+
+<section>
+<section id="sec-1" >
+
+<h2>What is Clojure?</h2>
+<ul class="org-ul">
+<li class="fragment roll-in">A functional lisp
+</li>
+<li class="fragment roll-in">Consistent syntax
+</li>
+<li class="fragment roll-in">Dynamic, strong typing
+</li>
+<li class="fragment roll-in">(Almost) Everything is immutable
+</li>
+<li class="fragment roll-in">Runs on the JVM 
+</li>
+<li class="fragment roll-in">Compiles to bytecode and JS (ClojureScript)
+</li>
+</ul>
+</section>
+</section>
+<section>
+<section id="sec-2" >
+
+<h2>Collections</h2>
+<ul class="org-ul">
+<li class="fragment roll-in">List: <code>(1 2 false)</code>
+</li>
+<li class="fragment roll-in">Vector: <code>["ham biscuit" 7 (1 2 3)]</code>
+</li>
+<li class="fragment roll-in">Map: <code>{"key" "value", 1 true}</code>
+</li>
+</ul>
+</section>
+</section>
+<section>
+<section id="sec-3" >
+
+<h2>Collections as values</h2>
+<ul class="org-ul">
+<li>List: <code>(1 2 false)</code>
+</li>
+<li>Vector: <code>["ham biscuit" 7 (1 2 3)]</code>
+</li>
+<li>Map: <code>{"key" "value", 1 true}</code>
+</li>
+</ul>
+</section>
+</section>
+<section>
+<section id="sec-4" >
+
+<h2>Code is data</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #170ce4;">println</span> <span style="color: #297f29; font-style: italic;">"Hello friends!"</span>)
+
+(<span style="color: #5c5c5c;">doseq</span> [technology [<span style="color: #297f29; font-style: italic;">"Vert.x"</span> <span style="color: #297f29; font-style: italic;">"Netty"</span>]]
+  (<span style="color: #170ce4;">println</span> technology <span style="color: #297f29; font-style: italic;">"is the bomb."</span>))
+</pre>
+</div>
+</section>
+</section>
+<section>
+<section id="sec-5" >
+
+<h2>Java Interop</h2>
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #5c5c5c;">import</span> '<span style="color: #170ce4;">java.util.concurrent.CountDownLatch</span>)
+
+(<span style="color: #5c5c5c;">let</span> [latch (<span style="color: #170ce4;">CountDownLatch.</span> 1)
+      thread (<span style="color: #170ce4;">Thread.</span>
+               (<span style="color: #5c5c5c;">fn</span> []
+                 (<span style="color: #170ce4;">println</span> <span style="color: #297f29; font-style: italic;">"Thread started"</span>)
+                 (<span style="color: #170ce4;">.countDown</span> latch)))]
+  (<span style="color: #170ce4;">.start</span> thread)
+  (<span style="color: #170ce4;">.await</span> latch))
+</pre>
+</div>
+</section>
+</section>
+<section>
+<section id="sec-6" >
+
+<h2>Why Clojure + Vert.x?</h2>
+<ul class="org-ul">
+<li class="fragment roll-in">Similar concurrency goals
+</li>
+<li class="fragment roll-in">JVM native
+</li>
+<li class="fragment roll-in">1st class functions
+</li>
+<li class="fragment roll-in">REPL
+</li>
+<li class="fragment roll-in">ClojureScript EventBus client
+</li>
+</ul>
+</section>
+</section>
+<section>
+<section id="sec-7" >
+
+<h2>Drawbacks</h2>
+<ul class="org-ul">
+<li>Static runtime
+</li>
+</ul>
+</section>
+</section>
+<section>
+<section id="sec-8" >
+
+<h2>Examples</h2>
+</section>
+
+</section>
+<section>
+<section id="sec-9" >
+
+<h2>Takeaways</h2>
+</section>
+
+</section>
+<section>
+<section id="sec-10" >
+
+<h2>Resources</h2>
+<ul class="org-ul">
+<li>Clojure &amp; state: <a href="http://clojure.org/state">http://clojure.org/state</a>
+</li>
+<li>Stuart Sierra YOW! 2013: <a href="http://www.youtube.com/watch?v=Bcd3TOlYUGM">http://www.youtube.com/watch?v=Bcd3TOlYUGM</a>
+</li>
+<li>mod-lang-clojure: <a href="https://github.com/vert-x/mod-lang-clojure">https://github.com/vert-x/mod-lang-clojure</a>
+</li>
+<li>lein-vertx: <a href="https://github.com/isaiah/lein-vertx">https://github.com/isaiah/lein-vertx</a>
+</li>
+<li>ring-vertx-adapter: <a href="https://github.com/stream1984/ring-vertx-adapter">https://github.com/stream1984/ring-vertx-adapter</a>
+</li>
+<li>This presentation: 
+</li>
+</ul>
+</section>
+</section>
+<section>
+<section id="sec-11"  data-state="cited dark-bg" class="suppress">
+
+<h2>Questions?</h2>
+
+<img src="./hands.jpg" alt="hands.jpg" />
+</section>
+</section>
+<section>
+<section id="sec-12" >
+
+<h2>Credits</h2>
+<ul class="org-ul">
+<li>"please raise hand for assistance" - <a href="http://www.flickr.com/photos/coldtaxi/426162862/">http://www.flickr.com/photos/coldtaxi/426162862/</a>
+</li>
+</ul>
+</section>
+</section>
+</div>
+</div>
+<script src="./lib/js/head.min.js"></script>
+<script src="./js/reveal.min.js"></script>
+<script>
+
+        		// Full list of configuration options available here:
+        		// https://github.com/hakimel/reveal.js#configuration
+        		Reveal.initialize({
+        			controls: false,
+        			progress: false,
+        			history: true,
+        			center: true,
+        			rollingLinks: true,
+        			keyboard: true,
+        			overview: true,
+        			 // slide width
+        			 // slide height
+        			margin: 0.10, // slide margin
+        			minScale: 0.50, // slide minimum scaling factor
+        			maxScale: 2.50, // slide maximum scaling factor
+
+
+        			theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        			transition: Reveal.getQueryHash().transition || 'linear', // default/cube/page/concave/zoom/linear/fade/none
+        			transitionSpeed: 'fast',
+
+        			// Optional libraries used to extend on reveal.js
+        			dependencies: [
+        				{ src: './lib/js/classList.js', condition: function() { return !document.body.classList; } }
+        				,{ src: './plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } }
+        				,{ src: './plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } }
+        				,{ src: './plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+        				,{ src: './plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } }
+        				,{ src: './plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        				// { src: './plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+        				// { src: './plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+         				
+        			]
+        		});
+</script>
+</body>
+</html>
