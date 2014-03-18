@@ -7,12 +7,13 @@
   (org-reveal-export-to-html)
 
   (open-files-in-dir src-dir)
-  (open-read-only (concat project-dir "project.clj"))
+  
   (open-read-only (concat project-dir "java-src/tcrawley/examples/JavaHandler.java"))
-
-  (dired project-dir)
+  (open-read-only (concat project-dir "project.clj"))
+  
   (shell)
-
+  ;;(dired project-dir)
+  
   (shell-command "lein do javac, cljsbuild once")
   
   (shell-command (format "chromium-browser --new-window file:%svertx-clojure.html" preso-dir))
@@ -22,3 +23,4 @@
                  "https://github.com/isaiah/lein-vertx" "https://github.com/stream1984/ring-vertx-adapter"))
     (shell-command (format "chromium-browser %s" url))))
 
+(embiggen 15)

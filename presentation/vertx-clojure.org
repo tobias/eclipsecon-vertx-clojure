@@ -38,7 +38,9 @@
 
 #+BEGIN_SRC clojure
   (println "Hello friends!")
-  
+#+END_SRC
+
+#+BEGIN_SRC clojure
   (doseq [technology ["Vert.x" "Netty"]]
     (println technology "is the bomb."))
 #+END_SRC
@@ -46,7 +48,7 @@
 * Java Interop
 
 #+BEGIN_SRC clojure
-  (import 'java.util.concurrent.CountDownLatch)
+  (import '[java.util.concurrent CountDownLatch TimeUnit])
   
   (let [latch (CountDownLatch. 1)
         thread (Thread.
@@ -54,18 +56,18 @@
                    (println "Thread started")
                    (.countDown latch)))]
     (.start thread)
-    (.await latch))
+    (.await latch 10 TimeUnit/SECONDS))
 #+END_SRC
 
-* Why Clojure + Vert.x?
-#+ATTR_REVEAL: :frag roll-in
-  - Similar concurrency goals
-  - JVM native
-  - 1st class functions
-  - REPL
-  - ClojureScript EventBus client
+# * Why Clojure + Vert.x?
+# #+ATTR_REVEAL: :frag roll-in
+#   - Similar concurrency goals
+#   - JVM native
+#   - 1st class functions
+#   - REPL
+#   - ClojureScript EventBus client
 
-* Drawbacks
+* Drawbacks 
   - Static runtime
 
 * Examples

@@ -1,14 +1,5 @@
 (ns examples.examples)
 
-;; require vertx primary namespace
-(require '[vertx.core :as vertx])
-
-(vertx/periodic 1000
-  (println "FIRED"))
-
-;; cancel, using the repl's memory of last return value
-(vertx/cancel-timer *1)
-
 (require '[vertx.eventbus :as eb])
 
 ;; using a fn by name as a handler
@@ -23,7 +14,8 @@
 ;; a lambda as a handler 
 (eb/on-message "example.fn"
   (fn [msg]
-    (println "lambda fn:" msg (class msg))))
+    (println "lambda fn:"
+      msg (class msg))))
 
 ;; a java object as a handler
 (import 'tcrawley.examples.JavaHandler)
@@ -36,6 +28,9 @@
 
 ;; anything that can be coerced to a Buffer is handled automatically
 (fs/write-file "/tmp/foo.txt" "bar")
+
+;; require vertx primary namespace
+(require '[vertx.core :as vertx])
 
 ;; deploy a module
 (vertx/deploy-module "io.vertx~mod-web-server~2.0.0-final"

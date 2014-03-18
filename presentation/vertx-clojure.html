@@ -23,15 +23,13 @@
 
 <h2>What is Clojure?</h2>
 <ul class="org-ul">
-<li class="fragment roll-in">A functional lisp
+<li class="fragment roll-in">A functional lisp for the JVM
 </li>
 <li class="fragment roll-in">Consistent syntax
 </li>
 <li class="fragment roll-in">Dynamic, strong typing
 </li>
 <li class="fragment roll-in">(Almost) Everything is immutable
-</li>
-<li class="fragment roll-in">Runs on the JVM 
 </li>
 <li class="fragment roll-in">Compiles to bytecode and JS (ClojureScript)
 </li>
@@ -73,8 +71,12 @@
 <div class="org-src-container">
 
 <pre class="src src-clojure">(<span style="color: #170ce4;">println</span> <span style="color: #297f29; font-style: italic;">"Hello friends!"</span>)
+</pre>
+</div>
 
-(<span style="color: #5c5c5c;">doseq</span> [technology [<span style="color: #297f29; font-style: italic;">"Vert.x"</span> <span style="color: #297f29; font-style: italic;">"Netty"</span>]]
+<div class="org-src-container">
+
+<pre class="src src-clojure">(<span style="color: #5c5c5c;">doseq</span> [technology [<span style="color: #297f29; font-style: italic;">"Vert.x"</span> <span style="color: #297f29; font-style: italic;">"Netty"</span>]]
   (<span style="color: #170ce4;">println</span> technology <span style="color: #297f29; font-style: italic;">"is the bomb."</span>))
 </pre>
 </div>
@@ -86,39 +88,21 @@
 <h2>Java Interop</h2>
 <div class="org-src-container">
 
-<pre class="src src-clojure">(<span style="color: #5c5c5c;">import</span> '<span style="color: #170ce4;">java.util.concurrent.CountDownLatch</span>)
+<pre class="src src-clojure">(<span style="color: #5c5c5c;">import</span> '[java.util.concurrent <span style="color: #170ce4;">CountDownLatch</span> <span style="color: #170ce4;">TimeUnit</span>])
 
-(<span style="color: #5c5c5c;">let</span> [latch (<span style="color: #170ce4;">CountDownLatch.</span> 1)
-      thread (<span style="color: #170ce4;">Thread.</span>
+(<span style="color: #5c5c5c;">let</span> [latch (<span style="color: #0b7d07;">CountDownLatch.</span> 1)
+      thread (<span style="color: #0b7d07;">Thread.</span>
                (<span style="color: #5c5c5c;">fn</span> []
                  (<span style="color: #170ce4;">println</span> <span style="color: #297f29; font-style: italic;">"Thread started"</span>)
                  (<span style="color: #170ce4;">.countDown</span> latch)))]
   (<span style="color: #170ce4;">.start</span> thread)
-  (<span style="color: #170ce4;">.await</span> latch))
+  (<span style="color: #170ce4;">.await</span> latch 10 <span style="color: #170ce4;">TimeUnit/SECONDS</span>))
 </pre>
 </div>
 </section>
 </section>
 <section>
 <section id="sec-6" >
-
-<h2>Why Clojure + Vert.x?</h2>
-<ul class="org-ul">
-<li class="fragment roll-in">Similar concurrency goals
-</li>
-<li class="fragment roll-in">JVM native
-</li>
-<li class="fragment roll-in">1st class functions
-</li>
-<li class="fragment roll-in">REPL
-</li>
-<li class="fragment roll-in">ClojureScript EventBus client
-</li>
-</ul>
-</section>
-</section>
-<section>
-<section id="sec-7" >
 
 <h2>Drawbacks</h2>
 <ul class="org-ul">
@@ -128,27 +112,27 @@
 </section>
 </section>
 <section>
-<section id="sec-8" >
+<section id="sec-7" >
 
 <h2>Examples</h2>
 </section>
 
 </section>
 <section>
-<section id="sec-9" >
+<section id="sec-8" >
 
 <h2>Takeaways</h2>
 </section>
 
 </section>
 <section>
-<section id="sec-10" >
+<section id="sec-9" >
 
 <h2>Resources</h2>
 <ul class="org-ul">
-<li>Clojure &amp; state: <a href="http://clojure.org/state">http://clojure.org/state</a>
-</li>
 <li>Stuart Sierra YOW! 2013: <a href="http://www.youtube.com/watch?v=Bcd3TOlYUGM">http://www.youtube.com/watch?v=Bcd3TOlYUGM</a>
+</li>
+<li>Clojure &amp; state: <a href="http://clojure.org/state">http://clojure.org/state</a>
 </li>
 <li>mod-lang-clojure: <a href="https://github.com/vert-x/mod-lang-clojure">https://github.com/vert-x/mod-lang-clojure</a>
 </li>
@@ -156,13 +140,13 @@
 </li>
 <li>ring-vertx-adapter: <a href="https://github.com/stream1984/ring-vertx-adapter">https://github.com/stream1984/ring-vertx-adapter</a>
 </li>
-<li>This presentation: 
+<li>This presentation: <a href="https://github.com/tobias/eclipsecon-vertx-clojure">https://github.com/tobias/eclipsecon-vertx-clojure</a>
 </li>
 </ul>
 </section>
 </section>
 <section>
-<section id="sec-11"  data-state="cited dark-bg" class="suppress">
+<section id="sec-10"  data-state="cited dark-bg" class="suppress">
 
 <h2>Questions?</h2>
 
@@ -170,7 +154,7 @@
 </section>
 </section>
 <section>
-<section id="sec-12" >
+<section id="sec-11" >
 
 <h2>Credits</h2>
 <ul class="org-ul">
